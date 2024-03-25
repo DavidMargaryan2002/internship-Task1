@@ -2,27 +2,33 @@
 
 class Model
 {
-    public $conn;
+    private $conn;
 
     public function __construct()
     {
-        $this->conn = mysqli_connect("localhost", "root", "", "registration");
-        if (!$this->conn) {
-            die(mysqli_connect_error($this->conn));
+        $host = "localhost";
+        $db_name = "registration";
+        $username = "root";
+        $password = "";
+
+        try {
+            $this->conn = new PDO("mysql:host=$host;dbname=$db_name", $username, $password);
+            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        } catch (PDOException $e) {
+            die("Connection failed: " . $e->getMessage());
         }
     }
 
     public function __destruct()
     {
-        mysqli_close($this->conn);
+        $this->conn = null;
     }
 
     public function insertUser($name, $surname, $email, $phone, $age, $password)
     {
-        $query = "INSERT INTO `users` (`us_id`, `name`, `surname`, `email`, `phone`, `age`, `password`) VALUES (NULL, '$name', '$surname', '$email', '$phone', '$age', '$password');";
-        $connQuery = mysqli_query($this->conn, $query);
+        $query = "INSERT INTO `users` (`us_id`, `name`, `surname`, `email`, `phone`, `age`, `password`) VALUES (NULL, ?, ?, ?, ?, ?, ?)";
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute([$name, $surname, $email, $phone, $age, $password]);
     }
-
 }
-
-$model = new Model();
+?>
