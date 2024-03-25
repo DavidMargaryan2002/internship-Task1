@@ -1,10 +1,11 @@
 <?php
 
-class Model
+class Database
 {
+    private static $instance = null;
     private $conn;
 
-    public function __construct()
+    private function __construct()
     {
         $host = "localhost";
         $db_name = "registration";
@@ -19,9 +20,35 @@ class Model
         }
     }
 
-    public function __destruct()
+    public static function getInstance()
     {
-        $this->conn = null;
+        if (!self::$instance) {
+            self::$instance = new self();
+        }
+        return self::$instance;
+    }
+
+    public function getConnection()
+    {
+        return $this->conn;
+    }
+
+    private function __clone()
+    {
+    }
+
+    private function __wakeup()
+    {
+    }
+}
+
+class Model
+{
+    private $conn;
+
+    public function __construct()
+    {
+        $this->conn = Database::getInstance()->getConnection();
     }
 
     public function insertUser($name, $surname, $email, $phone, $age, $password)
@@ -31,4 +58,7 @@ class Model
         $stmt->execute([$name, $surname, $email, $phone, $age, $password]);
     }
 }
+
+
+
 
