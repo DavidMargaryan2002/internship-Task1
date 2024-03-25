@@ -31,4 +31,4 @@ class Model
         $stmt->execute([$name, $surname, $email, $phone, $age, $password]);
     }
 }
-?>
+
