@@ -2,7 +2,7 @@
 require_once '../Model/model.php';
 session_start();
 
-if(isset($_POST['btn_registration'])) {
+if (isset($_POST['btn_registration'])) {
     $name = $_POST['firstname'];
     $surname = $_POST['lastname'];
     $email = $_POST['email'];
@@ -11,8 +11,8 @@ if(isset($_POST['btn_registration'])) {
     $password = $_POST['password'];
     $confirm_password = $_POST['confirm_password'];
 
-    if(!empty($name) && !empty($surname) && !empty($email) && !empty($phone) && !empty($phone) && !empty($age) && !empty($password) && !empty($confirm_password)) {
-        if($password === $confirm_password) {
+    if (!empty($name) && !empty($surname) && !empty($email) && !empty($phone) && !empty($phone) && !empty($age) && !empty($password) && !empty($confirm_password)) {
+        if ($password === $confirm_password) {
             $model = Model::getInstance();
             $model->insertUser($name, $surname, $email, $phone, $age, $password);
             header('Location: ../index.php');

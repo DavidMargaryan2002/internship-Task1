@@ -7,9 +7,9 @@ class Model
 
     private function __construct()
     {
-        $host = "localhost";
-        $db_name = "registration";
-        $username = "root";
+        $host = 'localhost';
+        $db_name = 'registration';
+        $username = 'root';
         $password = "";
 
         try {
@@ -30,7 +30,7 @@ class Model
 
     public function insertUser($name, $surname, $email, $phone, $age, $password)
     {
-        $query = "INSERT INTO `users` (`us_id`, `name`, `surname`, `email`, `phone`, `age`, `password`) VALUES (NULL, ?, ?, ?, ?, ?, ?)";
+        $query = 'INSERT INTO `users` (`us_id`, `name`, `surname`, `email`, `phone`, `age`, `password`) VALUES (NULL, ?, ?, ?, ?, ?, ?)';
         $stmt = $this->conn->prepare($query);
         $stmt->execute([$name, $surname, $email, $phone, $age, $password]);
     }
