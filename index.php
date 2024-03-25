@@ -24,7 +24,7 @@
         <button class="reg_btn" name="btn_registration">Registration</button>
     </form>
     <div class="error">
-        <?php if(isset($_SESSION['error'])): ?>
+        <?php if (isset($_SESSION['error'])): ?>
             <div class="error-message">
                 <h2>Error!</h2>
                 <p><?= $_SESSION['error']; ?></p>
