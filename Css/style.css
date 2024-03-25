@@ -1,0 +1,51 @@
+/* Стили для контейнера */
+.container {
+    width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+/* Стили для заголовка */
+.container h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Стили для формы */
+.container form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Стили для текстовых полей */
+.container input[type="text"],
+.container input[type="email"],
+.container input[type="number"],
+.container input[type="date"],
+.container input[type="password"] {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* Стили для кнопки */
+.container button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #2196F3;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.container button:hover {
+    background-color: #0b7dda;
+}
