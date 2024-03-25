@@ -13,7 +13,7 @@ if(isset($_POST['btn_registration'])) {
 
     if(!empty($name) && !empty($surname) && !empty($email) && !empty($phone) && !empty($phone) && !empty($age) && !empty($password) && !empty($confirm_password)) {
         if($password === $confirm_password) {
-            $model = new Model();
+            $model = Model::getInstance();
             $model->insertUser($name, $surname, $email, $phone, $age, $password);
             header('Location: ../index.php');
         } else {

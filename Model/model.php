@@ -1,6 +1,6 @@
 <?php
 
-class Database
+class Model
 {
     private static $instance = null;
     private $conn;
@@ -28,6 +28,13 @@ class Database
         return self::$instance;
     }
 
+    public function insertUser($name, $surname, $email, $phone, $age, $password)
+    {
+        $query = "INSERT INTO `users` (`us_id`, `name`, `surname`, `email`, `phone`, `age`, `password`) VALUES (NULL, ?, ?, ?, ?, ?, ?)";
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute([$name, $surname, $email, $phone, $age, $password]);
+    }
+
     public function getConnection()
     {
         return $this->conn;
@@ -41,24 +48,6 @@ class Database
     {
     }
 }
-
-class Model
-{
-    private $conn;
-
-    public function __construct()
-    {
-        $this->conn = Database::getInstance()->getConnection();
-    }
-
-    public function insertUser($name, $surname, $email, $phone, $age, $password)
-    {
-        $query = "INSERT INTO `users` (`us_id`, `name`, `surname`, `email`, `phone`, `age`, `password`) VALUES (NULL, ?, ?, ?, ?, ?, ?)";
-        $stmt = $this->conn->prepare($query);
-        $stmt->execute([$name, $surname, $email, $phone, $age, $password]);
-    }
-}
-
 
 
 
