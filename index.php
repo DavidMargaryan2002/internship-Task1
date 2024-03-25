@@ -1,4 +1,9 @@
-<?php session_start(); ?>
+<?php
+
+session_start();
+
+?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -6,7 +11,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Registration Page</title>
     <link rel="stylesheet" href="Css/style.css" type="text/css">
 </head>
 <body>
@@ -23,20 +28,14 @@
         <button class="reg_btn" name="btn_registration">Registration</button>
     </form>
     <div class="error">
-        <?php if(isset($_SESSION["error"])){ ?>
+        <?php if(isset($_SESSION["error"])): ?>
             <div class="error-message">
                 <h2>Error!</h2>
-                <p><?php  echo $_SESSION["error"] ;
-                    ?></p>
+                <p><?= $_SESSION["error"]; ?></p>
             </div>
-        <?php }
-        session_unset();
-        ?>
+        <?php endif; ?>
+        <?php session_unset(); ?>
     </div>
 </div>
-
-
-
-
 </body>
 </html>
